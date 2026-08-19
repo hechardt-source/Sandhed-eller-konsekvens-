@@ -50,7 +50,11 @@ button{width:100%;padding:17px;margin-top:12px;border:0;border-radius:15px;font-
 <div class="center" id="type"></div>
 <div class="question" id="q"></div>
 <div class="timer" id="timer">30</div>
+<button onclick="answered()">FÆRDIG / HAR SVARET</button>
 </div>
+
+</div>
+  
 
 <div id="ready" class="card hidden">
 <h2>Tiden er ude!</h2>
@@ -139,7 +143,7 @@ showChoose();
 
 function showChoose(){
 document.getElementById("cat").textContent="KATEGORI "+category+" AF 3";
-document.getElementById("who").textContent=players[turn]+"'S TUR";
+document.getElementById("who").textContent=players[turn]+"'s TUR";
 show("choose");
 }
 
@@ -169,7 +173,11 @@ show("ready");
 }
 },1000);
 }
-
+function answered(){
+clearInterval(timer);
+document.getElementById("next").textContent=players[1-turn];
+show("ready");
+}
 function next(){
 turn=1-turn;
 
