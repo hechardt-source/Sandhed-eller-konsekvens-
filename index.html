@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sandhed eller Konsekvens</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#111;color:white;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.app{max-width:600px;margin:auto;min-height:100vh;padding:25px 18px;display:flex;align-items:center}
+.card{width:100%;background:#202024;border-radius:28px;padding:28px;box-shadow:0 10px 35px #0008}
+h1{text-align:center;font-size:38px;line-height:1.05}
+h2{text-align:center}
+input{width:100%;padding:16px;margin:7px 0;border:0;border-radius:14px;background:#303034;color:white;font-size:18px}
+button{width:100%;padding:17px;margin-top:12px;border:0;border-radius:15px;font-size:19px;font-weight:bold}
+.truth{background:#8748e8;color:white}
+.dare{background:#e34b69;color:white}
+.hidden{display:none}
+.category{text-align:center;color:#aaa}
+.player{text-align:center;font-size:28px;font-weight:bold;margin:15px 0}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.question{text-align:center;font-size:27px;min-height:150px;display:flex;align-items:center;justify-content:center}
+.timer{text-align:center;font-size:72px;font-weight:900}
+.center{text-align:center;color:#aaa}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div id="start" class="card">
+<h1>Sandhed<br>eller Konsekvens</h1>
+<input id="p1" placeholder="Spiller 1">
+<input id="p2" placeholder="Spiller 2">
+<button onclick="start()">START SPIL</button>
+</div>
+
+<div id="choose" class="card hidden">
+<div class="category" id="cat"></div>
+<div class="player" id="who"></div>
+<h2>Vælg</h2>
+<div class="choice">
+<button class="truth" onclick="question('truth')">SANDHED</button>
+<button class="dare" onclick="question('dare')">KONSEKVENS</button>
+</div>
+</div>
+
+<div id="play" class="card hidden">
+<div class="category" id="cat2"></div>
+<div class="player" id="who2"></div>
+<div class="center" id="type"></div>
+<div class="question" id="q"></div>
+<div class="timer" id="timer">30</div>
+</div>
+
+<div id="ready" class="card hidden">
+<h2>Tiden er ude!</h2>
+<div class="player" id="next"></div>
+<p class="center">Er du klar til næste spørgsmål?</p>
+<button onclick="next()">KLAR</button>
+</div>
+
+<div id="finish" class="card hidden">
+<h1>🎉 Godt spil!</h1>
+<p class="center">I har gennemført alle 3 kategorier.</p>
+<button onclick="location.reload()">SPIL IGEN</button>
+</div>
+
+</div>
+
+<script>
+const data={
+1:{
+truth:[
+"Hvad er det mest pinlige, du har gjort foran andre?",
+"Hvad er din mærkeligste vane?",
+"Hvad er det sidste, du har googlet?",
+"Hvad er noget, du aldrig ville fortælle på en første date?",
+"Hvad er dit mest pinlige øjeblik?"
+],
+dare:[
+"Lav din bedste imitation af den anden spiller.",
+"Dans i 30 sekunder uden musik.",
+"Tal med en meget dramatisk stemme i 30 sekunder.",
+"Lav en reklame for den nærmeste genstand.",
+"Lav din bedste robot-imitation."
+]},
+2:{
+truth:[
+"Hvad er den største misforståelse, andre har om dig?",
+"Hvad ville du ændre ved dig selv?",
+"Hvornår har du sidst været virkelig flov?",
+"Hvad er det mest impulsive, du har gjort?",
+"Hvad er din mest kontroversielle holdning?"
+],
+dare:[
+"Lav en overdreven modelgang.",
+"Lav en mini-standup om den anden spiller.",
+"Tal kun i spørgsmål i 30 sekunder.",
+"Opfør dig som en berømt filmstjerne.",
+"Fortæl en almindelig historie som en actionfilm."
+]},
+3:{
+truth:[
+"Hvad er den mest modige ting, du har gjort?",
+"Hvad er noget, du aldrig har sagt højt før?",
+"Hvilken drøm vil du helst realisere?",
+"Hvad er det mest pinlige øjeblik, du stadig tænker på?",
+"Hvad ville du gøre, hvis ingen kunne dømme dig?"
+],
+dare:[
+"Lav en dramatisk kærlighedserklæring til en genstand.",
+"Improvisér en gyserfilmscene.",
+"Lav en reklame for dig selv som et produkt.",
+"Lav en motivationstale om noget helt banalt.",
+"Lav en dramatisk afslutning på spillet."
+]}
+};
+
+let players=[];
+let category=1;
+let turn=0;
+let timer;
+let seconds=30;
+
+function show(id){
+document.querySelectorAll(".card").forEach(x=>x.classList.add("hidden"));
+document.getElementById(id).classList.remove("hidden");
+}
+
+function start(){
+players=[
+document.getElementById("p1").value.trim()||"Spiller 1",
+document.getElementById("p2").value.trim()||"Spiller 2"
+];
+category=1;
+turn=0;
+showChoose();
+}
+
+function showChoose(){
+document.getElementById("cat").textContent="KATEGORI "+category+" AF 3";
+document.getElementById("who").textContent=players[turn]+"'S TUR";
+show("choose");
+}
+
+function question(type){
+let list=data[category][type];
+let q=list[Math.floor(Math.random()*list.length)];
+
+document.getElementById("cat2").textContent="KATEGORI "+category;
+document.getElementById("who2").textContent=players[turn];
+document.getElementById("type").textContent=
+type==="truth"?"SANDHED":"KONSEKVENS";
+document.getElementById("q").textContent=q;
+
+seconds=30;
+document.getElementById("timer").textContent=seconds;
+show("play");
+
+clearInterval(timer);
+timer=setInterval(()=>{
+seconds--;
+document.getElementById("timer").textContent=seconds;
+
+if(seconds<=0){
+clearInterval(timer);
+document.getElementById("next").textContent=players[1-turn];
+show("ready");
+}
+},1000);
+}
+
+function next(){
+turn=1-turn;
+
+if(turn===0){
+category++;
+if(category>3){
+show("finish");
+return;
+}
+}
+
+showChoose();
+}
+</script>
+</body>
+</html>
