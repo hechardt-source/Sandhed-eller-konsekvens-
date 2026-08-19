@@ -232,11 +232,14 @@ clearInterval(timer);
 document.getElementById("next").textContent=players[1-turn];
 show("ready");
 }
-function next(){
+  function next(){
 turn=1-turn;
+questionCount++;
 
-if(turn===0){
+if(questionCount>=10){
+questionCount=0;
 category++;
+
 if(category>4){
 show("finish");
 return;
