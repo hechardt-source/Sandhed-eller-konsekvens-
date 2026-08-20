@@ -305,7 +305,10 @@ let list=data[category][type];
   return;
 }
 if(!Array.isArray(list)) list=list[genders[turn]];
-
+let available=list.filter(q=>!usedQuestions.has(q));
+let q=available[Math.floor(Math.random()*available.length)];
+usedQuestions.add(q);
+  
 document.getElementById("cat2").textContent="KATEGORI "+category;
 document.getElementById("who2").textContent=players[turn];
 document.getElementById("type").textContent=
