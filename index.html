@@ -270,7 +270,7 @@ let questionCount=0;
 let turn=0;
 let timer;
 let seconds=30;
-let usedQuestions=new Set();
+let usedQuestions=new Set();let consecutiveTruth=0;
 
 function show(id){
 document.querySelectorAll(".card").forEach(x=>x.classList.add("hidden"));
@@ -299,6 +299,10 @@ show("choose");
 }
 
 function question(type){
+if(type==="truth" && consecutiveTruth>=2){
+    alert("Du har taget 2 sandhedsspørgsmål i træk. Nu skal du vælge KONSEKVENS.");
+    return;
+}
 let list=data[category][type];
   if(!list){
   alert("FEJL: Kategori " + category + " mangler " + type);
@@ -308,6 +312,11 @@ if(!Array.isArray(list)) list=list[genders[turn]];
 let available=list.filter(q=>!usedQuestions.has(q));
 let q=available[Math.floor(Math.random()*available.length)];
 usedQuestions.add(q);
+if(type==="truth"){
+    consecutiveTruth++;
+}else{
+    consecutiveTruth=0;
+}
   
 document.getElementById("cat2").textContent="KATEGORI "+category;
 document.getElementById("who2").textContent=players[turn];
