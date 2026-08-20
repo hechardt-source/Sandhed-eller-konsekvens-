@@ -314,9 +314,9 @@ let available=list.filter(q=>!usedQuestions.has(q));
 let q=available[Math.floor(Math.random()*available.length)];
 usedQuestions.add(q);
 if(type==="truth"){
-    consecutiveTruth++;
+consecutiveTruth[turn]++;
 }else{
-    consecutiveTruth=[turn]=0;
+consecutiveTruth[turn]=0;
 }
   
 document.getElementById("cat2").textContent="KATEGORI "+category;
