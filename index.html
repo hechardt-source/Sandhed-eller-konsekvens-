@@ -300,7 +300,7 @@ show("choose");
 }
 
 function question(type){
-if(type==="truth" && consecutiveTruth>=2){
+if(type==="truth" && consecutiveTruth[turn]>=2){
     alert("Du har taget 2 sandhedsspørgsmål i træk. Nu skal du vælge KONSEKVENS.");
     return;
 }
