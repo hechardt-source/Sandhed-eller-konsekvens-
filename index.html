@@ -299,6 +299,10 @@ show("choose");
 
 function question(type){
 let list=data[category][type];
+  if(!list){
+  alert("FEJL: Kategori " + category + " mangler " + type);
+  return;
+}
 if(!Array.isArray(list)) list=list[genders[turn]];
 let q=list[Math.floor(Math.random()*list.length)];
 
