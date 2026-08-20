@@ -305,7 +305,6 @@ let list=data[category][type];
   return;
 }
 if(!Array.isArray(list)) list=list[genders[turn]];
-let q=list[Math.floor(Math.random()*list.length)];
 
 document.getElementById("cat2").textContent="KATEGORI "+category;
 document.getElementById("who2").textContent=players[turn];
