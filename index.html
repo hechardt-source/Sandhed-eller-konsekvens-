@@ -270,6 +270,7 @@ let questionCount=0;
 let turn=0;
 let timer;
 let seconds=30;
+let usedQuestions=new Set();
 
 function show(id){
 document.querySelectorAll(".card").forEach(x=>x.classList.add("hidden"));
