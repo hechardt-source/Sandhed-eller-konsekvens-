@@ -358,7 +358,10 @@ questionCount++;
 if(questionCount>=10){
 questionCount=0;
 category++;
-
+document.getElementById("categoryChangeText").textContent =
+  "I går videre til næste kategori!";
+show("categoryChange");
+return;
 if(category>4){
 show("finish");
 return;
