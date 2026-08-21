@@ -366,9 +366,16 @@ category++;
   show("finish");
   return;
 }
+if(category===2){
   document.getElementById("categoryChangeText").innerHTML =
-  "Hvis I ikke allerede har smidt tøjet, skal I kun have undertøj på nu ❤️<br><br>Nu bliver det lidt mere intenst 😍";
-show("categoryChange");
+    "Hvis I ikke allerede har smidt tøjet, skal I kun have undertøj på nu ❤️<br><br>Nu bliver det lidt mere intenst 😍";
+}else if(category===3){
+  document.getElementById("categoryChangeText").innerHTML =
+    "Nu skruer vi lidt op for temperaturen 😈🔥<br><br>Herfra bliver spørgsmålene mere frække, mere intime og lidt sværere at slippe udenom…<br><br>Og hvis I ikke er nøgne nu, er det tid til at være det ❤️‍🔥";
+}else if(category===4){
+  document.getElementById("categoryChangeText").innerHTML =
+    "Nu er I nået til den vilde kategori 😈🔥<br><br>Her bliver det mere intenst, mere grænseoverskridende og langt sværere at gemme sig bag et “nej”...<br><br>Så hvis I troede, I allerede havde været modige, er det nu, I finder ud af, hvor modige I egentlig er ❤️‍🔥";
+}
 return;
 
 }
