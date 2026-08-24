@@ -480,13 +480,13 @@ function selectChallenge(index){
   `;
 }
 function challengeAccepted(){
-  document.getElementById("challenge").innerHTML=`
+  document.getElementById("challengeResult").innerHTML=`
     <h2>DIN CHALLENGE</h2>
     <div class="question">${selectedChallenge}</div>
     <p class="center">📸 TAG SCREENSHOT</p>
     <button onclick="challengeSet()">CHALLENGE SET</button>
   `;
-}  
+}
 function challengeSet(){
   document.getElementById("next").textContent=players[1-turn];
   show("ready");
