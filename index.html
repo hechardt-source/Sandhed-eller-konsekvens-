@@ -445,6 +445,17 @@ clearInterval(timer);
 document.getElementById("next").textContent=players[1-turn];
 show("ready");
 }
+ function startChallenge(){
+  clearInterval(timer);
+
+  let list=challenges[genders[turn]];
+
+  document.getElementById("ch1").textContent=list[0];
+  document.getElementById("ch2").textContent=list[1];
+  document.getElementById("ch3").textContent=list[2];
+
+  show("challenge");
+} 
   function continueCategory(){
 showChoose();
 }
