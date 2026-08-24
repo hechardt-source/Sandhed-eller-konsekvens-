@@ -468,6 +468,14 @@ function selectChallenge(index){
     <button onclick="challengeAccepted()">CHALLENGE ACCEPTED</button>
   `;
 }
+function challengeAccepted(){
+  document.getElementById("challenge").innerHTML=`
+    <h2>DIN CHALLENGE</h2>
+    <div class="question">${selectedChallenge}</div>
+    <p class="center">📸 TAG SCREENSHOT</p>
+    <button onclick="challengeSet()">CHALLENGE SET</button>
+  `;
+}  
   function continueCategory(){
 showChoose();
 }
