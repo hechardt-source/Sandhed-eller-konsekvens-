@@ -42,7 +42,15 @@ button{width:100%;padding:17px;margin-top:12px;border:0;border-radius:15px;font-
 <option value="female">Dame</option>
 <option value="male">Mand</option>
 </select>
+<button onclick="showRules()">SPILLETS REGLER</button>
 <button onclick="start()">START SPIL</button>
+</div>
+  <div id="rules" class="card hidden">
+  <h1>SPILLETS REGLER</h1>
+
+  <p class="center">INDSÆT JERES REGLER HER</p>
+
+  <button onclick="hideRules()">TILBAGE</button>
 </div>
 
 <div id="choose" class="card hidden">
@@ -322,6 +330,16 @@ dare:{
   }
   },
 };
+
+ function showRules(){
+  document.querySelectorAll(".card").forEach(x => x.classList.add("hidden"));
+  document.getElementById("rules").classList.remove("hidden");
+}
+
+function hideRules(){
+  document.querySelectorAll(".card").forEach(x => x.classList.add("hidden"));
+  document.getElementById("start").classList.remove("hidden");
+} 
 
 let players=[];
 let genders=[];
