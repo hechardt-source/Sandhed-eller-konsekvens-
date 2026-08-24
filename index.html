@@ -455,8 +455,14 @@ show("ready");
   document.getElementById("ch2").textContent=list[1];
   document.getElementById("ch3").textContent=list[2];
 
+  document.getElementById("ch1").style.display="block";
+  document.getElementById("ch2").style.display="block";
+  document.getElementById("ch3").style.display="block";
+
+  document.getElementById("challengeResult").innerHTML="";
+
   show("challenge");
-} 
+}
   let selectedChallenge="";
 
 function selectChallenge(index){
