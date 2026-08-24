@@ -476,6 +476,10 @@ function challengeAccepted(){
     <button onclick="challengeSet()">CHALLENGE SET</button>
   `;
 }  
+function challengeSet(){
+  document.getElementById("next").textContent=players[1-turn];
+  show("ready");
+}  
   function continueCategory(){
 showChoose();
 }
