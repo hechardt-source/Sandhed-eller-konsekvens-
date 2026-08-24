@@ -415,6 +415,7 @@ document.getElementById("cat2").textContent="KATEGORI "+category;
 document.getElementById("who2").textContent=players[turn];
 document.getElementById("type").textContent=
 type==="truth"?"SANDHED":"KONSEKVENS";
+  document.getElementById("challengeBtn").classList.toggle("hidden", type!=="dare");
 document.getElementById("q").textContent=q;
 
 seconds=30;
