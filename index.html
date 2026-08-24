@@ -456,6 +456,18 @@ show("ready");
 
   show("challenge");
 } 
+  let selectedChallenge="";
+
+function selectChallenge(index){
+  let list=challenges[genders[turn]];
+  selectedChallenge=list[index];
+
+  document.getElementById("challenge").innerHTML=`
+    <h2>DIN CHALLENGE</h2>
+    <div class="question">${selectedChallenge}</div>
+    <button onclick="challengeAccepted()">CHALLENGE ACCEPTED</button>
+  `;
+}
   function continueCategory(){
 showChoose();
 }
